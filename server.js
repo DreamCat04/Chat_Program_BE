@@ -16,7 +16,10 @@ app.use(session({
 }));
 
 const port = 5000;
+const usersData = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
+const users = usersData.users;
 
+const messages = JSON.parse(fs.readFileSync('./messages.json', 'utf8'));
 app.post("/login", (request, response) => {
     const username = request.body.username;
     const password = request.body.password;
@@ -24,8 +27,6 @@ app.post("/login", (request, response) => {
     console.log('Received password:', password);
     
   // Read the users from the users.json file
-  const usersData = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
-  const users = usersData.users;
 
   // Check if the provided credentials match any user in the users.json file
   const foundUser = users.find((user) => {
@@ -43,6 +44,15 @@ app.post("/login", (request, response) => {
   }
 });
 app.get("/messages", (request, response) => {
+const loggedInUser = request.session.username;
+response.json(messages.messages);
+});
+//send a message
+app.post("/messages", (request, response) => {
+
+});
+//update a certain message by its ID
+app.put("/messages/:id", (request, response) => {
 
 });
 
