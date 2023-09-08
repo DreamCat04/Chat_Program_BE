@@ -1,0 +1,12 @@
+{
+    "users" : [
+        {
+            "username" : "DreamCat04",
+            "password" : "T3st!P4ssw0rd1234"
+        },
+        {
+            "username" : "AnotherUser",
+            "password" : "4n0ther!P4ssw0rd6942"
+        }
+    ]
+}
