@@ -72,7 +72,7 @@ app.get("/messages", (request, response) => {
 app.post("/messages", (request, response) => {
     //temporarily done with a messages file, will later be replaced with a database call
     const newMessage = request.body;
-    //console.log(newMessage);
+
     // Generate an incremented ID
     newMessage.id = generateNextId();
     newMessage.sentBy = request.session.username;
