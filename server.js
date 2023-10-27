@@ -39,7 +39,7 @@ const generateNextId = () => {
   };
 
 const messages = JSON.parse(fs.readFileSync('./messages.json', 'utf8'));
-app.post("/login", (request, response) => {
+app.post("/api/login", (request, response) => {
     const username = request.body.username;
     const password = request.body.password;
 
@@ -62,14 +62,14 @@ app.post("/login", (request, response) => {
     response.status(401).send('Invalid login credentials!');
   }
 });
-app.get("/messages", (request, response) => {
+app.get("/api/messages", (request, response) => {
     //temporarily done with a messages file, will later be replaced with a database call
     const messages = JSON.parse(fs.readFileSync('./messages.json', 'utf8'));
     const loggedInUser = request.session.username;
     response.json(messages.messages);
 });
 //send a message
-app.post("/messages", (request, response) => {
+app.post("/api/messages", (request, response) => {
     //temporarily done with a messages file, will later be replaced with a database call
     const newMessage = request.body;
 
@@ -87,7 +87,7 @@ app.post("/messages", (request, response) => {
 
 });
 //update a certain message by its ID
-app.put("/messages/:id", (request, response) => {
+app.put("/api/messages/:id", (request, response) => {
 const updateContent = request.body.message;
 const messageIdToUpdate = request.params.id;
 
