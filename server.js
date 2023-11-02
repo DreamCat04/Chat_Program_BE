@@ -2,7 +2,9 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 const session = require('express-session');
+const cors = require('cors')
 
+app.use(cors({ origin: 'http://localhost:3000' }))
 app.use(express.json());
 app.use(express.urlencoded({'extended' : true}));
 app.use(session({
@@ -66,7 +68,7 @@ app.get("/api/messages", (request, response) => {
     //temporarily done with a messages file, will later be replaced with a database call
     const messages = JSON.parse(fs.readFileSync('./messages.json', 'utf8'));
     const loggedInUser = request.session.username;
-    response.json(messages.messages);
+    response.json(messages.messages).send();
 });
 //send a message
 app.post("/api/messages", (request, response) => {
@@ -75,7 +77,7 @@ app.post("/api/messages", (request, response) => {
 
     // Generate an incremented ID
     newMessage.id = generateNextId();
-    newMessage.sentBy = request.session.username;
+    newMessage.sentBy = "DreamCat04";//request.session.username;
     newMessage.sentAt = new Date().toISOString;
     // Add the new data to the array
     messagesData.messages.push(newMessage);
