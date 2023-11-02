@@ -2,23 +2,15 @@
   "messages": [
     {
       "id": 1,
-      "message": "Hello, how are you?",
+      "text": "Hello, how are you?",
       "sentBy": "DreamCat04",
       "sentAt": "2023-09-08 13:33:30"
     },
     {
       "id": 2,
-      "message": "I'm fine, what about you?",
+      "text": "I'm fine, what about you?",
       "sentBy": "AnotherUser",
       "sentAt": "2023-09-08 13:53:00"
-    },
-    {
-      "message": "meow",
-      "id": 3
-    },
-    {
-      "message": "meow",
-      "id": 4
     }
   ]
 }
