@@ -78,7 +78,7 @@ app.post("/api/messages", (request, response) => {
     // Generate an incremented ID
     newMessage.id = generateNextId();
     newMessage.sentBy = "DreamCat04";//request.session.username;
-    newMessage.sentAt = new Date().toISOString;
+    newMessage.sentAt = new Date().toISOString();
     // Add the new data to the array
     messagesData.messages.push(newMessage);
   
