@@ -11,6 +11,54 @@
       "text": "I'm fine, what about you?",
       "sentBy": "AnotherUser",
       "sentAt": "2023-09-08 13:53:00"
+    },
+    {
+      "message": "hello, test again wohooo",
+      "id": 3,
+      "sentBy": "DreamCat04",
+      "sentAt": "2023-11-03T09:31:28.902Z"
+    },
+    {
+      "text": "test, hopefully I fixed the name now",
+      "id": 4,
+      "sentBy": "DreamCat04",
+      "sentAt": "2023-11-03T09:33:09.138Z"
+    },
+    {
+      "text": "test",
+      "id": 5,
+      "sentBy": "DreamCat04",
+      "sentAt": "2023-11-03T12:23:18.933Z"
+    },
+    {
+      "text": "test",
+      "id": 6,
+      "sentBy": "DreamCat04",
+      "sentAt": "2023-11-03T12:23:23.026Z"
+    },
+    {
+      "text": "test",
+      "id": 7,
+      "sentBy": "DreamCat04",
+      "sentAt": "2023-11-03T12:27:28.834Z"
+    },
+    {
+      "text": "test",
+      "id": 8,
+      "sentBy": "DreamCat04",
+      "sentAt": "2023-11-03T12:27:39.189Z"
+    },
+    {
+      "text": "test",
+      "id": 9,
+      "sentBy": "DreamCat04",
+      "sentAt": "2023-11-03T12:59:44.916Z"
+    },
+    {
+      "text": "Hi, dies ist ein Test",
+      "id": 10,
+      "sentBy": "DreamCat04",
+      "sentAt": "2023-11-03T13:37:48.383Z"
     }
   ]
 }
