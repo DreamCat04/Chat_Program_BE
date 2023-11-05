@@ -44,7 +44,7 @@ const generateNextId = () => {
 app.get('/', (request, response) => {
   response.send('You shouldn\' t be accessing this, this is the backend! But nice that you found this :=)');
 });
-const messages = JSON.parse(fs.readFileSync('./messages.json', 'utf8'));
+
 app.post("/api/login", (request, response) => {
     const username = request.body.username;
     const password = request.body.password;
