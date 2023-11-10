@@ -1,4 +1,5 @@
 const mariadb = require('mariadb');
+const fs = require('fs');
 
 // Create a connection pool
 const pool = mariadb.createPool({
@@ -24,3 +25,23 @@ module.exports = {
     }
   },
 }
+fs.readFile('init.sql', 'utf8', (err, data) => {
+  if (err) {
+    console.error('Error reading initialization script:', err);
+    return;
+  }
+
+  pool.getConnection()
+    .then((conn) => {
+      return conn.query(data);
+    })
+    .then(() => {
+      console.log('Database initialization completed successfully.');
+    })
+    .catch((err) => {
+      console.error('Error executing initialization script:', err);
+    })
+    .finally(() => {
+      pool.end();
+    });
+});
