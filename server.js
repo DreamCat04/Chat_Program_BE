@@ -2,7 +2,8 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 const session = require('express-session');
-const cors = require('cors')
+const cors = require('cors');
+const db = require('./db');
 
 app.use(cors({ origin: 'http://localhost:3000' }))
 app.use(express.json());
@@ -22,14 +23,6 @@ const port = 5000;
 let messagesData = [];
 const filePath = './messages.json';
 
-try {
-  const fileData = fs.readFileSync(filePath, 'utf8');
-  messagesData = JSON.parse(fileData);
-} catch (err) {
-  // Handle the error, e.g., if the file doesn't exist or is not valid JSON
-  console.error('Error reading file:', err);
-}
-
 // Function to generate an incremented ID
 const generateNextId = () => {
     if (messagesData.messages.length === 0) {
@@ -44,7 +37,7 @@ const generateNextId = () => {
 app.get('/', (request, response) => {
   response.send('You shouldn\' t be accessing this, this is the backend! But nice that you found this :=)');
 });
-
+ 
 app.post("/api/login", (request, response) => {
     const username = request.body.username;
     const password = request.body.password;
@@ -77,12 +70,19 @@ app.get("/api/messages", (request, response) => {
 //send a message
 app.post("/api/messages", (request, response) => {
     //temporarily done with a messages file, will later be replaced with a database call
+    try {
+      const fileData = fs.readFileSync(filePath, 'utf8');
+      messagesData = JSON.parse(fileData);
+    } catch (err) {
+      // Handle the error, e.g., if the file doesn't exist or is not valid JSON
+      console.error('Error reading file:', err);
+    }
     const newMessage = request.body;
-
+    const date = new Date();
     // Generate an incremented ID
     newMessage.id = generateNextId();
     newMessage.sentBy = "DreamCat04";//request.session.username;
-    newMessage.sentAt = new Date().toISOString();
+    newMessage.sentAt = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
     // Add the new data to the array
     messagesData.messages.push(newMessage);
   
