@@ -3,11 +3,11 @@ const fs = require('fs');
 
 // Create a connection pool
 const pool = mariadb.createPool({
-  host: 'localhost',
+  host: 'nextcloud-clone-db',
   user: 'dreamcat04',
-  password: 'D4t4b4as3!P4ssw0rd1234',
+  password: 'D4t4b4s3!P4ssw0rd1234',
   database: 'chat_db',
-  connectionLimit: 5, // Adjust this value as needed
+  connectionLimit: 5 // Adjust this value as needed
 });
 
 // Export a function to handle database queries
