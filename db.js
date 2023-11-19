@@ -7,7 +7,7 @@ const pool = mariadb.createPool({
   user: 'dreamcat04',
   password: 'D4t4b4s3!P4ssw0rd1234',
   database: 'chat_db',
-  connectionLimit: 5 // Adjust this value as needed
+  connectionLimit: 10 // Adjust this value as needed
 });
 
 // Export a function to handle database queries
@@ -25,7 +25,8 @@ module.exports = {
     }
   },
 }
-fs.readFile('init.sql', 'utf8', (err, data) => {
+fs.readFile('init.sql', 'utf-8', (err, data) => {
+  console.log(data);
   if (err) {
     console.error('Error reading initialization script:', err);
     return;

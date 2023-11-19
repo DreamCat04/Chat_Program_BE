@@ -33,7 +33,6 @@ const generateNextId = () => {
     }
   };
 
-
 app.get('/', (request, response) => {
   response.send('You shouldn\' t be accessing this, this is the backend! But nice that you found this :=)');
 });
