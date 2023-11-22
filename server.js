@@ -23,6 +23,8 @@ const port = 5000;
 let messagesData = [];
 const filePath = './messages.json';
 
+const usersFile = './users.json';
+
 // Function to generate an incremented ID
 const generateNextId = () => {
     if (messagesData.messages.length === 0) {
@@ -95,7 +97,11 @@ app.post("/api/messages", (request, response) => {
 app.put("/api/messages/:id", (request, response) => {
 const updateContent = request.body.message;
 const messageIdToUpdate = request.params.id;
+});
 
+app.get("/api/user-contacts", (request, response) => {
+  const users = JSON.parse(fs.readFileSync(usersFile, 'utf8'));
+  response.json(users.users).send();
 });
 
 app.listen(port, () => {
