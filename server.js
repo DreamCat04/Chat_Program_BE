@@ -66,7 +66,7 @@ app.get("/api/messages", (request, response) => {
     //temporarily done with a messages file, will later be replaced with a database call
     const messages = JSON.parse(fs.readFileSync('./messages.json', 'utf8'));
     const loggedInUser = request.session.username;
-    response.json(messages.messages).send();
+    response.json(messages.messages);
 });
 //send a message
 app.post("/api/messages", (request, response) => {
@@ -101,7 +101,7 @@ const messageIdToUpdate = request.params.id;
 
 app.get("/api/user-contacts", (request, response) => {
   const users = JSON.parse(fs.readFileSync(usersFile, 'utf8'));
-  response.json(users.users).send();
+  response.json(users.users);
 });
 
 app.listen(port, () => {
