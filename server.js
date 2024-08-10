@@ -21,7 +21,7 @@ app.use(session({
 const port = 5000;
 
 let messagesData = [];
-const filePath = './messages.json';
+const messagesFile = './messages.json';
 
 const usersFile = './users.json';
 
@@ -43,8 +43,9 @@ app.post("/api/login", (request, response) => {
     const username = request.body.username;
     const password = request.body.password;
 
+    console.log(username, password);
   // Read the users from the users.json file
-  const usersData = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
+  const usersData = JSON.parse(fs.readFileSync(usersFile), 'utf8');
   const users = usersData.users;
   
   // Check if the provided credentials match any user in the users.json file
@@ -72,7 +73,7 @@ app.get("/api/messages", (request, response) => {
 app.post("/api/messages", (request, response) => {
     //temporarily done with a messages file, will later be replaced with a database call
     try {
-      const fileData = fs.readFileSync(filePath, 'utf8');
+      const fileData = fs.readFileSync(messagesFile, 'utf8');
       messagesData = JSON.parse(fileData);
     } catch (err) {
       // Handle the error, e.g., if the file doesn't exist or is not valid JSON
@@ -88,7 +89,7 @@ app.post("/api/messages", (request, response) => {
     messagesData.messages.push(newMessage);
   
     // Write the updated data back to the file
-    fs.writeFileSync(filePath, JSON.stringify(messagesData, null, 2), 'utf8');
+    fs.writeFileSync(messagesFile, JSON.stringify(messagesData, null, 2), 'utf8');
   
     response.status(201).json(newMessage); // Respond with the added data
 
@@ -102,6 +103,11 @@ const messageIdToUpdate = request.params.id;
 app.get("/api/user-contacts", (request, response) => {
   const users = JSON.parse(fs.readFileSync(usersFile, 'utf8'));
   response.json(users.users);
+});
+
+app.get("/api/current-user", (request, response) => {
+  const currentUser = request.session.username;
+  response.send(currentUser);
 });
 
 app.listen(port, () => {
